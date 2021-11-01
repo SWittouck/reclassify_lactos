@@ -5,15 +5,16 @@
 
 library(tidyverse)
 library(tidyamplicons)
+library(glue)
 source("src/functions.R")
 
 # specify locations of test data, reference database and output files
 din_pekes <- "data/ferme_pekes_preprocessed/"
-din_isala <- "data/isala_pilot_study_preprocessed/"
+din_isala <- "data/isala_pilot_amplicon_preprocessed/"
 fin_refdb <- "data/SSUrRNA_GTDB05-lactobacillaceae-all_DADA2.fna"
 dout <- "results"
 
-# create output folder 
+# create results folder 
 if (! dir.exists(dout)) dir.create(dout)
 
 # import isala data and select a subset of samples (vaginal samples only,
@@ -23,7 +24,9 @@ vaginal <-
   read_tidyamplicons() %>%
   filter_samples(body_site == "V", method == "A", rep == "rep3") %>%
   filter_samples(high_quality) %>%
-  mutate_samples(dataset = "vaginal swabs") %>%
+  mutate_samples(
+    dataset = glue("vaginal swabs (n = {numbers(.)[['n_samples']]})")
+  ) %>%
   select_samples(sample_id, dataset) %>%
   modify_at("taxa", rename, sequence = taxon)
 
@@ -33,7 +36,9 @@ pekes <-
   din_pekes %>%
   read_tidyamplicons() %>%
   filter_samples(day == "D30", high_quality) %>%
-  mutate_samples(dataset = "fermented carrots") %>%
+  mutate_samples(
+    dataset = glue("fermented carrots (n = {numbers(.)[['n_samples']]})")
+  ) %>%
   select_samples(sample_id, dataset) 
 
 # merge the datasets
