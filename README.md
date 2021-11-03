@@ -11,8 +11,8 @@ The necessary datasets and the reference database for classification can be down
 * R version 4.1.1
 * R packages: 
     * tidyverse version 1.3.1
-    * tidyamplicons version ed7b057
-    * dada2 version 1.20.0
+    * [tidyamplicons](https://github.com/SWittouck/tidyamplicons) version 0.2.2
+    * [dada2](https://benjjneb.github.io/dada2/dada-installation.html) version 1.20.0
 
 ## Data
 

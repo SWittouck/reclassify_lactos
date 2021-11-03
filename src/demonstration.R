@@ -1,7 +1,7 @@
 # The goal of this script is to demonstrate the reclassification of lactobacilli
 # to the new taxonomy introduced by Zheng et al. (2020). 
 
-# dependencies: tidyverse v1.3.1, tidyamplicons version ed7b057, dada2 v1.20.0
+# dependencies: tidyverse v1.3.1, tidyamplicons v0.2.2, dada2 v1.20.0
 
 library(tidyverse)
 library(tidyamplicons)
